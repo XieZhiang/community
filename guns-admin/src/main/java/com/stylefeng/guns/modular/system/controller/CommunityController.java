@@ -62,7 +62,7 @@ public class CommunityController extends BaseController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public Object list(String condition) {
-        return communityService.selectList(new EntityWrapper<Community>().eq("acState","1"));
+        return communityService.selectList(null);
     }
 
     /**

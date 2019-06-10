@@ -131,7 +131,7 @@ public class TeacheractivityController extends BaseController {
                 return "您已抢到此课程";      //已抢到，抢单失败
             }
             return "此课程已被其他教师抢走";         //已被抢
-        }else if(Integer.parseInt(wxuser.getAuthority())==1){
+        }else if(Integer.parseInt(wxuser.getAuthority())==0){
             return "您的权限不够，无法抢单";         //权限不够，不能抢单
         }
         teacheractivityService.insert(teacheractivity);

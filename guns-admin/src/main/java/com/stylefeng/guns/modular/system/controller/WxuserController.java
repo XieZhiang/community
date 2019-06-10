@@ -19,7 +19,7 @@ import com.stylefeng.guns.modular.system.service.IWxuserService;
  * @Date 2019-05-15 21:26:35
  */
 @Controller
-@RequestMapping("/wxuser")
+@RequestMapping("community/wxuser")
 public class WxuserController extends BaseController {
 
     private String PREFIX = "/system/wxuser/";

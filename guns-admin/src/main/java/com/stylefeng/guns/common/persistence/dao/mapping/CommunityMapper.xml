@@ -22,19 +22,22 @@
         id, acOrg, acTitle, acContent, acLocation, acStart_time AS acstartTime, acEnd_time AS acendTime, acThreshold, accredit, acBonus, acState
     </sql>
 
-    <select id="search"  parameterType="string" resultType="com.stylefeng.guns.common.persistence.model.Community">
+    <select id="search"  parameterType="string" resultMap="BaseResultMap">
         <bind name="pattern" value="'%' + keyword + '%'" ></bind>
         select * from   community where
+        acState=1 and
         acTitle like #{pattern} OR acContent like #{pattern}
     </select>
 
-    <select id="endlist"  parameterType="string" resultType="com.stylefeng.guns.common.persistence.model.Community">
+    <select id="endlist"  parameterType="string" resultMap="BaseResultMap">
         select * from   community where
+        acState=1 and
          STR_TO_DATE(acEnd_time,'%Y-%m-%d-%H:%i') &lt; now();
     </select>
 
-    <select id="holding"  parameterType="string" resultType="com.stylefeng.guns.common.persistence.model.Community">
+    <select id="holding"  parameterType="string" resultMap="BaseResultMap">
         select * from   community where
+        acState=1 and
          STR_TO_DATE(acEnd_time,'%Y-%m-%d-%H:%i') &gt; now();
     </select>
 
