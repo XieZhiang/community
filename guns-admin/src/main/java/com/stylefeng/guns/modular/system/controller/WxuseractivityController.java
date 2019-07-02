@@ -172,16 +172,28 @@ public class WxuseractivityController extends BaseController {
     @RequestMapping(value = "/sign")
     @ResponseBody
     public Object sign(Wxuseractivity wxuseractivity) {
-        Wxuseractivity wxuseractivity1 =wxuseractivityService.selectOne(new EntityWrapper<Wxuseractivity>().eq("openid",wxuseractivity.getOpenId()).eq("acId",wxuseractivity.getAcId()).eq("sign","0"));
+        Wxuseractivity wxuseractivity1 =wxuseractivityService.selectOne(new EntityWrapper<Wxuseractivity>().eq("acId",wxuseractivity.getAcId()).eq("openId",wxuseractivity.getOpenId()).eq("sign","0"));
         wxuseractivity1.setSign(1);
         wxuseractivityService.updateById(wxuseractivity1);
         return super.SUCCESS_TIP;
     }
-
+    /**
+     * 判断是否已报名
+     */
+    @RequestMapping(value = "/check")
+    @ResponseBody
+    public Boolean check(Wxuseractivity wxuseractivity){
+        Wxuseractivity wxuseractivity1=wxuseractivityService.selectOne(new EntityWrapper<Wxuseractivity>().eq("acId",wxuseractivity.getAcId()).eq("openId",wxuseractivity.getOpenId()));
+        System.out.println(wxuseractivity.getAcId()+ "   "+wxuseractivity1.getAcId());
+        if (wxuseractivity1.getId()==null){
+            return true;
+        }else
+            return false;
+    }
     /**
      * 我的活动汇总
      */
-    @RequestMapping(value = "/myactivity//{openId}")
+    @RequestMapping(value = "/myactivity/{openId}")
     @ResponseBody
     public Object myactivity(Wxuseractivity wxuseractivity) {
         List<Community> communities=new ArrayList<Community>();
