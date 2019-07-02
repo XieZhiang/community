@@ -32,13 +32,13 @@
     <select id="endlist"  parameterType="string" resultMap="BaseResultMap">
         select * from   community where
         acState=1 and
-         STR_TO_DATE(acEnd_time,'%Y-%m-%d-%H:%i') &lt; now();
+         STR_TO_DATE(acEnd_time,'%Y-%m-%d %H:%i') &lt; now();
     </select>
 
     <select id="holding"  parameterType="string" resultMap="BaseResultMap">
         select * from   community where
         acState=1 and
-         STR_TO_DATE(acEnd_time,'%Y-%m-%d-%H:%i') &gt; now();
+         STR_TO_DATE(acEnd_time,'%Y-%m-%d %H:%i') &gt; now();
     </select>
 
 </mapper>
